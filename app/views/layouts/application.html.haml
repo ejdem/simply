@@ -12,13 +12,22 @@
     = csrf_meta_tags
     = yield(:head)
   %body
-    %header.navbar.navbar-inverse
+    %nav.navbar.navbar-inverse
       .container
-        .navbar-header
-          = link_to 'home', root_path, class: 'navbar-brand'
-        .navbar
-          %ul.nav.navbar-nav
-    #main{:role => "main"}
-      .container
+      .navbar-header
+        = link_to 'iCan', root_path, class: 'navbar-brand'
+      #navbar
+        %ul.nav.navbar-nav
+        %ul.nav.navbar-nav.pull-right
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Role
+              %span.caret
+            %ul.dropdown-menu{:role => "menu"}
+              - User::ROLES.each do |k, v|
+                %li
+                  = link_to session_path(k), method: :patch do
+                    = v
+
         
         = yield
