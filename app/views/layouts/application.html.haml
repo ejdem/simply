@@ -12,15 +12,13 @@
     = csrf_meta_tags
     = yield(:head)
   %body
-    %header.navbar.navbar-fixed-top.navbar-inverse
-      %nav.navbar-inner
-        .container
-      %a.brand{:href => "/"} link to example page
+    %header.navbar.navbar-inverse
+      .container
+        .navbar-header
+          = link_to 'home', root_path, class: 'navbar-brand'
+        .navbar
+          %ul.nav.navbar-nav
     #main{:role => "main"}
       .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
-          %footer
+        
+        = yield

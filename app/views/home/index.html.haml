@@ -1,2 +1,14 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%h1 heading 1
+%p paragraph
+
+- if true
+  %p True
+  
+%ul
+  - [1, 2, 3].each do |el|
+    %li=el
+    
+  -#:javascript
+  -#  $(document).ready(function(){
+  -#    alert("#{flash[:notice]}");
+  -#  });
