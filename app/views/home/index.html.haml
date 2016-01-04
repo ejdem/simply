@@ -1,14 +1,4 @@
-%h1 heading 1
-%p paragraph
-
-- if true
-  %p True
-  
-%ul
-  - [1, 2, 3].each do |el|
-    %li=el
-    
-  -#:javascript
-  -#  $(document).ready(function(){
-  -#    alert("#{flash[:notice]}");
-  -#  });
+.page-header
+  %h1 Welcome!
+- if can? :index, Project
+  = link_to 'Projects', projects_path, class: 'btn btn-lg btn-primary'
