@@ -19,6 +19,33 @@ class ProjectsController < ApplicationController
         authorize! :create, @project
     end
     
+    def edit
+        @project = Project.find(params[:id])
+        authorize! :edit, @project
+    end
+    
+    def update
+        @project = Project.find(params[:id])
+        if @project.update_attributes(project_params)
+            flash[:success] = "updated!"
+            redirect_to root_path
+        else
+            render 'edit'
+        end
+        authorize! :update, @project
+    end
+    
+    def destroy
+        @project = Project.find(params[:id])
+        if @project.destroy
+            flash[:success] = 'destroyed'
+        else
+            flash[:warning] = 'cannot destroy project'
+        end
+        redirect_to root_path
+        authorize! :destroy, @project
+    end
+    
     private
     
     def project_params
