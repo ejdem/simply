@@ -1,49 +1,53 @@
 class ProjectsController < ApplicationController
-    def index
-        @projects = Project.all
-        authorize! :index, @projects
-    end
+    load_and_authorize_resource
+    #load_resource replaces "project.find and Project.new lines", new index edit acctions
+    #authorize_resoure replaces all authorize! lines
     
-    def new
-        @project =  Project.new
-        authorize! :new, @project
-    end
+    #def index thanks to first line is no longer needed
+    #    @projects = Project.all
+    #    authorize! :index, @projects
+    #end
+    
+    #def new
+    #    @project =  Project.new
+    #    authorize! :new, @project
+    #end
     
     def create
-        @project = Project.new(project_params)
+        #@project = Project.new(project_params) is automaticlly executed thanks to first line
         if @project.save
             flash[:success] = "project added"
         else
             render 'new'
         end
-        authorize! :create, @project
+        #authorize! :create, @project
     end
     
-    def edit
-        @project = Project.find(params[:id])
-        authorize! :edit, @project
-    end
+    #def edit
+    #    @project = Project.find(params[:id])
+    #    authorize! :edit, @project
+    #end
     
     def update
-        @project = Project.find(params[:id])
+        #@project = Project.find(params[:id]) is no longer needed thanks to first line
         if @project.update_attributes(project_params)
             flash[:success] = "updated!"
             redirect_to root_path
         else
             render 'edit'
         end
-        authorize! :update, @project
+        #authorize! :update, @project
     end
     
     def destroy
-        @project = Project.find(params[:id])
+        #@project = Project.find(params[:id])
         if @project.destroy
             flash[:success] = 'destroyed'
         else
             flash[:warning] = 'cannot destroy project'
         end
         redirect_to root_path
-        authorize! :destroy, @project
+        #authorize! :destroy, @project
     end
     
     private
