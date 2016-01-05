@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104233458) do
+ActiveRecord::Schema.define(version: 20160105135350) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "ongoing",    default: true
   end
+
+  add_index "projects", ["ongoing"], name: "index_projects_on_ongoing"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false

@@ -1,5 +1,9 @@
 = form_for @project fo |f|
   .form-group
-    = f.label :title
+    = f.label      :title
     = f.text_field :title, class: 'form-control'
+  .form-group 
+    = f.label     :ongoing
+    = f.check_box :ongoing
+    
   = f.submit "add", class: 'btn btn-primary'
