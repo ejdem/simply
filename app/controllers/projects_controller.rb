@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+    before_action :load_projects, only: :index
+    #importantes to be before "load_and..." action
     load_and_authorize_resource
     #load_resource replaces "project.find and Project.new lines", new index edit acctions
     #authorize_resoure replaces all authorize! lines
@@ -55,4 +57,9 @@ class ProjectsController < ApplicationController
     def project_params
         params.require(:project).permit(:title)
     end
+    
+    def load_projects
+        @projects = Project.accessible_by(current_ability).order('created_at DESC')
+    end
+    
 end
