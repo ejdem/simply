@@ -18,6 +18,10 @@
         = link_to 'iCan', root_path, class: 'navbar-brand'
       #navbar
         %ul.nav.navbar-nav
+          - if can? :create, Project
+            %li
+              = link_to "add project" new_project_path
+        %ul.nav.navbar-nav
         %ul.nav.navbar-nav.pull-right
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
