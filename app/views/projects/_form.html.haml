@@ -1,0 +1,5 @@
+= form_for @project fo |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  = f.submit "add", class: 'btn btn-primary'
