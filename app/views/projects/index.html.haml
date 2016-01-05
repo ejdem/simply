@@ -3,3 +3,9 @@
 - @projects.each do |project|
   .well.well-sm
     %h2= project.title
+    - if can? :update, project
+      = link_to 'edit', edit_project_path(project), class: 'btn btn-info'
+    - if can? :destroy, project
+      = link_to 'delete; project_path(project), class: 'btn btn-danger',
+                                                method: :delete,
+                                                data: { confirm: 'Are you sure?' }
